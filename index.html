@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+  <meta charset="utf-8">
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+<style>
+body{
+	font-family: "Phetsarath OT";
+}
+#container {
+  height: 500px; 
+  min-width: 310px; 
+  max-width: 800px; 
+  margin: 0 auto; 
+  font-family: "Phetsarath OT";
+}
+.loading {
+  margin-top: 10em;
+  text-align: center;
+  color: gray;
+} ?>
+</style>
+</head>
+<body>
+<div id="container"></div>
+<script>
+//Prepare random data
+  var data = [
+    {
+      "ADM1_PCODE": "LA01",
+      "value": 229293
+    },
+    {
+      "ADM1_PCODE": "LA02",
+      "value": 125763
+    },
+    {
+      "ADM1_PCODE": "LA03",
+      "value": 174917
+    },
+    {
+      "ADM1_PCODE": "LA03",
+      "value": 229293
+    },
+    {
+      "ADM1_PCODE": "LA04",
+      "value": 125763
+    },
+    {
+      "ADM1_PCODE": "LA05",
+      "value": 174917
+    },{
+      "ADM1_PCODE": "LA06",
+      "value": 229293
+    },
+    {
+      "ADM1_PCODE": "LA07",
+      "value": 125763
+    },
+    {
+      "ADM1_PCODE": "LA08",
+      "value": 174917
+    },{
+      "ADM1_PCODE": "LA09",
+      "value": 229293
+    },
+    {
+      "ADM1_PCODE": "LA10",
+      "value": 125763
+    },
+    {
+      "ADM1_PCODE": "LA11",
+      "value": 174917
+    },{
+      "ADM1_PCODE": "LA12",
+      "value": 229293
+    },
+    {
+      "ADM1_PCODE": "LA13",
+      "value": 125763
+    },
+    {
+      "ADM1_PCODE": "LA14",
+      "value": 174917
+    },{
+      "ADM1_PCODE": "LA15",
+      "value": 229293
+    },
+    {
+      "ADM1_PCODE": "LA16",
+      "value": 125763
+    },
+    {
+      "ADM1_PCODE": "LA17",
+      "value": 174917
+    },
+    {
+      "ADM1_PCODE": "LA18",
+      "value": 174917
+    },
+    
+  ];
+
+Highcharts.getJSON('https://raw.githubusercontent.com/princecanberra/mapjson/main/laosfinal1.json', function (geojson) {
+
+  // Initiate the chart
+  Highcharts.mapChart('container', {
+    chart: {
+      map: geojson
+    },
+
+    title: {
+      text: 'GeoJSON in Highmaps'
+    },
+
+    mapNavigation: {
+      enabled: true,
+      buttonOptions: {
+        verticalAlign: 'bottom'
+      }
+    },
+
+    colorAxis: {
+      tickPixelInterval: 100
+    },
+
+    series: [{
+      data: data,
+      keys: ['ADM1_PCODE', 'value'],
+      joinBy: 'ADM1_PCODE',
+      name: 'Random data',
+      states: {
+        hover: {
+          color: '#a4edba'
+        }
+      },
+      dataLabels: {
+        enabled: true,
+        format: '{point.properties.ADM1_EN}'
+      }
+    }]
+  });
+});
+
+</script>
+
+</body>
+</html>
